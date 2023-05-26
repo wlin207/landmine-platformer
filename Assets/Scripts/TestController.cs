@@ -6,7 +6,7 @@ using UnityEngine;
 public class TestController : MonoBehaviour
 {
     public float explosionForce = 100;
-    public float movementSpeed = 5;
+    public float movementSpeed = 5; 
     private Animator _animator;
     private Rigidbody _rb;
     private float LEFT = 90;
