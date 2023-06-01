@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -135,9 +135,9 @@ GameObject:
   - component: {fileID: 153939517}
   - component: {fileID: 153939516}
   - component: {fileID: 153939515}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor (5)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -237,24 +237,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b7ac82a6739024a830dad8977f4d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 500
-  movementSpeed: 5
---- !u!54 &239059020
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 239059018}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 120
-  m_CollisionDetection: 0
+  explosionRadius: 100
+  explosionForce: 15
+  movementSpeed: 35
+  upwardsModifier: 0.3
+  loseThreshold: -5
+  landminePrefab: {fileID: 2538844521810943418, guid: d12c00d7a03f5174d9b0f1b74506c49c, type: 3}
 --- !u!136 &239059021
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -266,9 +254,25 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1.966376
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: -0, y: 0.9958171, z: -0}
+  m_Center: {x: -0, y: 1, z: -0}
+--- !u!54 &239059024
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239059018}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 3
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 120
+  m_CollisionDetection: 3
 --- !u!1 &262297033
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,9 +285,9 @@ GameObject:
   - component: {fileID: 262297036}
   - component: {fileID: 262297035}
   - component: {fileID: 262297034}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor (7)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,9 +382,9 @@ GameObject:
   - component: {fileID: 479885729}
   - component: {fileID: 479885728}
   - component: {fileID: 479885727}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor (4)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -475,9 +479,9 @@ GameObject:
   - component: {fileID: 490716165}
   - component: {fileID: 490716164}
   - component: {fileID: 490716163}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -572,9 +576,9 @@ GameObject:
   - component: {fileID: 875995569}
   - component: {fileID: 875995568}
   - component: {fileID: 875995567}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor (6)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -711,7 +715,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -767,9 +771,9 @@ GameObject:
   - component: {fileID: 1281000543}
   - component: {fileID: 1281000542}
   - component: {fileID: 1281000541}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor (2)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -958,9 +962,9 @@ GameObject:
   - component: {fileID: 1620086400}
   - component: {fileID: 1620086399}
   - component: {fileID: 1620086398}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor (1)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1064,7 +1068,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1438546959266459337, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.41144276
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1438546959266459337, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1102,5 +1106,9 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: fde13419e80848e45b2edd21607c4303, type: 2}
+    - target: {fileID: 4540229000190281644, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
