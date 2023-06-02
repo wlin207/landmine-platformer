@@ -7,10 +7,12 @@ using Object = System.Object;
 
 public class TestController : MonoBehaviour
 {
-    public float explosionForce = 35;
-    public float movementSpeed = 35;
+    public float groundDrag = 5;
+    public float explosionForce = 25;
+    public float movementSpeed = 55;
     public float loseThreshold = -5;
     public GameObject landminePrefab;
+    public float addGravity = 13;
     private const float MineCooldown = 0.3f;
     private float _mineAvailableTime = 0;
     private Animator _animator;
@@ -63,8 +65,15 @@ public class TestController : MonoBehaviour
         }
         else if (isGrounded())
         {
+            _rb.drag = groundDrag;
             ApplyWalkingForce();
         }
+        else
+        {
+            _rb.drag = 0;
+        }
+        _rb.AddForce(new Vector3(0, -addGravity, 0));
+        
         OrientPlayer();
         UpdateAnimatorValues();
     }
