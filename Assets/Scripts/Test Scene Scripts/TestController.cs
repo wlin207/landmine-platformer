@@ -66,7 +66,8 @@ public class TestController : MonoBehaviour
             _landminePlaced = null;
             _shouldExplode = false;
         }
-        else if (isGrounded())
+        bool grounded = isGrounded();
+        if (grounded)
         {
             _rb.drag = groundDrag;
             ApplyWalkingForce();
@@ -78,12 +79,13 @@ public class TestController : MonoBehaviour
         _rb.AddForce(new Vector3(0, -addGravity, 0));
         
         OrientPlayer();
-        UpdateAnimatorValues();
+        UpdateAnimatorValues(grounded);
     }
 
-    private void UpdateAnimatorValues()
+    private void UpdateAnimatorValues(bool grounded)
     {
         _animator.SetFloat("Speed", Mathf.Abs(_rb.velocity.x));
+        _animator.SetBool("Grounded", grounded);
     }
 
     private void OrientPlayer()
