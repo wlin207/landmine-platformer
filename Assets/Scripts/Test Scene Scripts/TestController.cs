@@ -8,11 +8,12 @@ using Object = System.Object;
 public class TestController : MonoBehaviour
 {
     public float groundDrag = 5;
-    public float explosionForce = 25;
+    public float explosionForce = 20;
     public float movementSpeed = 55;
     public float loseThreshold = -5;
     public GameObject landminePrefab;
     public float addGravity = 13;
+    public float blastCenterRadius = 4; // within blast center, full force; otherwise distance attenuation
     private const float MineCooldown = 0.3f;
     private float _mineAvailableTime = 0;
     private Animator _animator;
@@ -24,6 +25,7 @@ public class TestController : MonoBehaviour
     private bool _shouldExplode = false;
     private const int FloorLayer = 3;
     private CapsuleCollider _collider;
+    private float _minDistance;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,7 @@ public class TestController : MonoBehaviour
         _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
         _collider = GetComponent<CapsuleCollider>();
+        _minDistance = (transform.position - _rb.worldCenterOfMass).magnitude;
     }
 
     // Update is called once per frame
@@ -108,9 +111,14 @@ public class TestController : MonoBehaviour
 
     private void ApplyExplosionForce()
     {
-        Vector3 direction = (_rb.worldCenterOfMass - _landminePlaced.transform.position).normalized;
+        Vector3 landmineToCenter = _rb.worldCenterOfMass - _landminePlaced.transform.position;
+        Vector3 direction = landmineToCenter.normalized;
         _rb.velocity = Vector3.zero;
-        _rb.AddForce(explosionForce * direction, ForceMode.Impulse);
+        
+        // immediate falloff
+        float distanceAttenuation = landmineToCenter.magnitude <= blastCenterRadius ? 1 : 0;
+        Vector3 finalExplosionForce = distanceAttenuation * explosionForce * direction;
+        _rb.AddForce(finalExplosionForce, ForceMode.Impulse);
     }
 
     private void ResetPositionIfOutOfBounds()

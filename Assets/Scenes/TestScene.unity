@@ -238,11 +238,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundDrag: 5
-  explosionForce: 25
+  explosionForce: 20
   movementSpeed: 55
   loseThreshold: -3
   landminePrefab: {fileID: 2538844521810943418, guid: d12c00d7a03f5174d9b0f1b74506c49c, type: 3}
   addGravity: 13
+  blastCenterRadius: 4
 --- !u!136 &239059021
 CapsuleCollider:
   m_ObjectHideFlags: 0
