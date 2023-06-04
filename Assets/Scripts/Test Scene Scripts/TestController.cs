@@ -46,7 +46,6 @@ public class TestController : MonoBehaviour
             if (!_landminePlaced)
             {
                 _landminePlaced = Instantiate(landminePrefab, transform.position, Quaternion.Euler(90, 0, 0));
-                print("Landmine placed at " + _landminePlaced.transform.position);
             }
             else
             {
