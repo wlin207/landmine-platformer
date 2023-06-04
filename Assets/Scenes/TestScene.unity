@@ -242,6 +242,7 @@ MonoBehaviour:
   movementSpeed: 55
   loseThreshold: -3
   landminePrefab: {fileID: 2538844521810943418, guid: d12c00d7a03f5174d9b0f1b74506c49c, type: 3}
+  explosionPrefab: {fileID: 2866158524978808810, guid: 73cd230f41dddad44a307eef9efb8b39, type: 3}
   addGravity: 13
   blastCenterRadius: 4
 --- !u!136 &239059021

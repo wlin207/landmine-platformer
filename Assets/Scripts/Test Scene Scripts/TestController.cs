@@ -12,6 +12,7 @@ public class TestController : MonoBehaviour
     public float movementSpeed = 55;
     public float loseThreshold = -5;
     public GameObject landminePrefab;
+    public GameObject explosionPrefab;
     public float addGravity = 13;
     public float blastCenterRadius = 4; // within blast center, full force; otherwise distance attenuation
     private const float MineCooldown = 0.3f;
@@ -40,7 +41,7 @@ public class TestController : MonoBehaviour
     void Update()
     {
         _lastHorizontalInput = Input.GetAxis("Horizontal");
-        if (Input.GetKeyDown("space") && Time.time > _mineAvailableTime && isGrounded())
+        if (Input.GetKeyDown("space") && Time.time > _mineAvailableTime && IsGrounded())
         {
             if (!_landminePlaced)
             {
@@ -60,13 +61,14 @@ public class TestController : MonoBehaviour
         ResetPositionIfOutOfBounds();
         if (_shouldExplode)
         {
+            Instantiate(explosionPrefab, _landminePlaced.transform.position, Quaternion.identity);
             ApplyExplosionForce();
 
             Destroy(_landminePlaced);
             _landminePlaced = null;
             _shouldExplode = false;
         }
-        bool grounded = isGrounded();
+        bool grounded = IsGrounded();
         if (grounded)
         {
             _rb.drag = groundDrag;
@@ -131,7 +133,7 @@ public class TestController : MonoBehaviour
         }
     }
 
-    private bool isGrounded()
+    private bool IsGrounded()
     {
         Ray ray = new Ray(transform.TransformPoint(_collider.center), Vector3.down);
         return Physics.SphereCast(ray, _collider.radius, _collider.height/2, 1 << FloorLayer);
