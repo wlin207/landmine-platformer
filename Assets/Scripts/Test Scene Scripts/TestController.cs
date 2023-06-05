@@ -7,6 +7,7 @@ using Object = System.Object;
 
 public class TestController : MonoBehaviour
 {
+    public int floorLayer = 3; // for masking to recognize the floor
     public float groundDrag = 5;
     public float explosionForce = 20;
     public float movementSpeed = 55;
@@ -24,7 +25,6 @@ public class TestController : MonoBehaviour
     private GameObject _landminePlaced;
     private float _lastHorizontalInput = 0;
     private bool _shouldExplode = false;
-    private const int FloorLayer = 3;
     private CapsuleCollider _collider;
     private float _minDistance;
 
@@ -135,6 +135,6 @@ public class TestController : MonoBehaviour
     private bool IsGrounded()
     {
         Ray ray = new Ray(transform.TransformPoint(_collider.center), Vector3.down);
-        return Physics.SphereCast(ray, _collider.radius, _collider.height/2, 1 << FloorLayer);
+        return Physics.SphereCast(ray, _collider.radius, _collider.height/2, 1 << floorLayer);
     }
 }
