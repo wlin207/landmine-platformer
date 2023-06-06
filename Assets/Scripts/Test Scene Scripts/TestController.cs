@@ -7,6 +7,7 @@ using Object = System.Object;
 
 public class TestController : MonoBehaviour
 {
+    public GameObject pauseText;
     public int floorLayer = 3; // for masking to recognize the floor
     public float groundDrag = 5;
     public float explosionForce = 20;
@@ -40,6 +41,20 @@ public class TestController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Time.timeScale == 0)
+            {
+                Time.timeScale = 1;
+                pauseText.SetActive(false);
+            }
+            else
+            {
+                Time.timeScale = 0;
+                pauseText.SetActive(true);
+            }
+            return;
+        }
         _lastHorizontalInput = Input.GetAxis("Horizontal");
         if (Input.GetKeyDown("space") && Time.time > _mineAvailableTime && IsGrounded())
         {
